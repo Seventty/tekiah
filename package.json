@@ -1,17 +1,8 @@
 {
-  "name": "material-dashboard-2-pro-react",
-  "version": "2.1.0",
-  "private": true,
-  "author": "Creative Tim",
-  "license": "See license in https://www.creative-tim.com/license",
-  "description": "React version of Material Dashboard 2 PRO by Creative Tim",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/ct-material-dashboard-pro-react/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/creativetimofficial/ct-material-dashboard-pro-react.git"
-  },
+  "name": "Tekiah platform",
+  "version": "0.0.1",
+  "author": "Rainiery Valerio Gonzalez",
+  "description": "Administrate your Church with the sound of God",
   "engines": {
     "node": "14 || 15 || 16",
     "npm": ">=6"
@@ -61,8 +52,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lit": "BROWSER=none react-scripts start",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
-  },
+      },
   "eslintConfig": {
     "extends": [
       "react-app",

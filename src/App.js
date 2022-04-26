@@ -2,18 +2,14 @@
 =========================================================
 * Material Dashboard 2 PRO React - v2.1.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
 Coded by www.creative-tim.com
-
  =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -32,16 +28,16 @@ import Configurator from "examples/Configurator";
 
 // Material Dashboard 2 PRO React themes
 import theme from "assets/theme";
-import themeRTL from "assets/theme/theme-rtl";
+// import themeRTL from "assets/theme/theme-rtl";
 
 // Material Dashboard 2 PRO React Dark Mode themes
 import themeDark from "assets/theme-dark";
-import themeDarkRTL from "assets/theme-dark/theme-rtl";
+// import themeDarkRTL from "assets/theme-dark/theme-rtl";
 
 // RTL plugins
-import rtlPlugin from "stylis-plugin-rtl";
-import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
+// import rtlPlugin from "stylis-plugin-rtl";
+// import { CacheProvider } from "@emotion/react";
+// import createCache from "@emotion/cache";
 
 // Material Dashboard 2 PRO React routes
 import routes from "routes";
@@ -66,11 +62,11 @@ export default function App() {
     darkMode,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
+  //  const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
   // Cache for the rtl
-  useMemo(() => {
+  /* useMemo(() => {
     const cacheRtl = createCache({
       key: "rtl",
       stylisPlugins: [rtlPlugin],
@@ -78,6 +74,8 @@ export default function App() {
 
     setRtlCache(cacheRtl);
   }, []);
+  
+    */
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -146,32 +144,7 @@ export default function App() {
     </MDBox>
   );
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="Material Dashboard PRO"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {configsButton}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
+  return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
@@ -196,3 +169,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+git c
