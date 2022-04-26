@@ -169,5 +169,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
-git c
