@@ -1,9 +1,9 @@
 {
-  "name": "Tekiah platform",
+  "name": "tekiah",
   "version": "0.0.1",
   "author": "Rainiery Valerio Gonzalez",
   "description": "Administrate your Church with the sound of God",
-  "engines": {
+      "engines": {
     "node": "14 || 15 || 16",
     "npm": ">=6"
   },

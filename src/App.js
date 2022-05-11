@@ -9,6 +9,9 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+/* Importing the custom scrollbar */
+
+import "./App.css";
 import { useState, useEffect } from "react";
 
 // react-router components
