@@ -1,7 +1,7 @@
 /* Customized scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: blue orange;
+  scrollbar-color: rgb(88, 88, 88) rgba(255, 166, 0, 0);
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -10,11 +10,12 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: orange;
+  background: rgba(255, 166, 0, 0);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: blue;
+  
+  background-color: rgb(88, 88, 88);
   border-radius: 20px;
-  border: 3px solid orange;
+  border: 3px solid rgba(255, 166, 0, 0);
 }
