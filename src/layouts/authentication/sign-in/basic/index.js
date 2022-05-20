@@ -1,9 +1,9 @@
 /**
 =========================================================
-* Material Dashboard 2 PRO React - v2.1.0
+* Material Dashboard 2 React - v2.1.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/material-dashboard-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
@@ -21,33 +21,86 @@ import { Link } from "react-router-dom";
 // @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
+/* import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
+import GoogleIcon from "@mui/icons-material/Google"; */
 
-// Material Dashboard 2 PRO React components
+// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+
+// Snackbar notification
+import MDSnackbar from "components/MDSnackbar";
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import shofar from "assets/images/illustrations/shofar_white.svg";
+
+const initialForm = {
+  email: "",
+  password: "",
+};
 
 function Basic() {
+  const [form, setForm] = useState(initialForm);
   const [rememberMe, setRememberMe] = useState(false);
+
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handlerChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+
+    if (!form.email || !form.password) {
+      setError(!error);
+      return;
+    } else {
+      setSuccess(!success);
+    }
+  };
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
     <BasicLayout image={bgImage}>
+      <MDSnackbar
+        color="error"
+        icon="warning"
+        title="Notificación Tekiah"
+        content="Introduce ambos campos."
+        open={error}
+        dateTime=""
+        onClose={handlerSubmit}
+        close={handlerSubmit}
+        bgWhite
+      />
+      <MDSnackbar
+        color="success"
+        icon="check"
+        title="Notificación Tekiah"
+        content="Acceso a cuenta realizado"
+        open={success}
+        dateTime=""
+        onClose={handlerSubmit}
+        close={handlerSubmit}
+        bgWhite
+      />
       <Card>
         <MDBox
           variant="gradient"
@@ -60,34 +113,38 @@ function Basic() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Sign in
+          <MDBox component="img" src={shofar} alt="shofar icon" width="60%" mt={-6} />
+          <MDTypography
+            variant="body1"
+            fontFamily="Praise"
+            style={{ fontSize: "40px" }}
+            color="white"
+            mt={-8}
+          >
+            Tekiah
           </MDTypography>
-          <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-            <Grid item xs={2}>
-              <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                <FacebookIcon color="inherit" />
-              </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                <GitHubIcon color="inherit" />
-              </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                <GoogleIcon color="inherit" />
-              </MDTypography>
-            </Grid>
-          </Grid>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handlerSubmit}>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                type="email"
+                name="email"
+                label="Correo electrónico"
+                fullWidth
+                onChange={handlerChange}
+                value={form.email}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                type="password"
+                name="password"
+                label="Contraseña"
+                fullWidth
+                onChange={handlerChange}
+                value={form.password}
+              />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -98,26 +155,40 @@ function Basic() {
                 onClick={handleSetRememberMe}
                 sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
               >
-                &nbsp;&nbsp;Remember me
+                &nbsp;&nbsp;Recuerdame
               </MDTypography>
             </MDBox>
-            <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
-                sign in
-              </MDButton>
-            </MDBox>
-            <MDBox mt={3} mb={1} textAlign="center">
+            <MDBox textAlign="center">
               <MDTypography variant="button" color="text">
-                Don&apos;t have an account?{" "}
                 <MDTypography
                   component={Link}
-                  to="/authentication/sign-up/cover"
+                  to="/authentication/reset-password/cover"
                   variant="button"
                   color="info"
                   fontWeight="medium"
                   textGradient
                 >
-                  Sign up
+                  ¿Has olvidado tu contraseña?
+                </MDTypography>
+              </MDTypography>
+            </MDBox>
+            <MDBox mt={1} mb={1}>
+              <MDButton type="submit" variant="gradient" color="info" fullWidth>
+                Inicia Sesión
+              </MDButton>
+            </MDBox>
+            <MDBox mt={3} mb={1} textAlign="center">
+              <MDTypography variant="button" color="text">
+                ¿No tienes una cuenta?{" "}
+                <MDTypography
+                  component={Link}
+                  to="/authentication/sign-up"
+                  variant="button"
+                  color="info"
+                  fontWeight="medium"
+                  textGradient
+                >
+                  Registrate aquí
                 </MDTypography>
               </MDTypography>
             </MDBox>
